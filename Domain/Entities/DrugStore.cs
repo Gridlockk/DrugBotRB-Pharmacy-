@@ -1,4 +1,6 @@
-﻿using Domain.ValueObjects;
+﻿using Ardalis.GuardClauses;
+using Domain.Validators;
+using Domain.ValueObjects;
 
 namespace Domain.Entities
 {
@@ -9,9 +11,27 @@ namespace Domain.Entities
     {
         public DrugStore(string drugNetwork, int number, Address address)
         {
-            DrugNetwork = drugNetwork;
-            Number = number;
-            Address = address;
+            try
+            {
+                DrugNetwork = Guard.Against.NullOrWhiteSpace(drugNetwork, nameof(drugNetwork));
+                Number = Guard.Against.NegativeOrZero(number, nameof(number));
+                Address = Guard.Against.Null(address, nameof(address));
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine($"{ex.ParamName} Аргумент не может быть равен Null");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"{ex.ParamName} введён неверно");
+            }
+            catch 
+            {
+                Console.WriteLine("Фатальная ошибка");
+            }
+            var validator = new DrugStoreValidator();
+            validator.Validate(this);
+
         }
 
         /// <summary>
