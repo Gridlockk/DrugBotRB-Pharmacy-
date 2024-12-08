@@ -1,8 +1,9 @@
-namespace Domain.Entities;
+﻿namespace Domain.Entities;
+
 /// <summary>
-/// Лекартсвенный препарат
+/// Лекарственный препарат
 /// </summary>
-public class Drug:BaseEntity
+public class Drug : BaseEntity
 {
     public Drug(string name, string manufacturer, string countryCodeId)
     {
@@ -10,8 +11,9 @@ public class Drug:BaseEntity
         Manufacturer = manufacturer;
         CountryCodeId = countryCodeId;
     }
+    
     /// <summary>
-    /// Название препарата
+    /// Название препарата.
     /// </summary>
     public string Name { get; private set; }
     
