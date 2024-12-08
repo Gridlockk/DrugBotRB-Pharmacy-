@@ -1,22 +1,45 @@
-﻿namespace Domain.ValueObjects;
-
-public class Address
+﻿namespace Domain.ValueObjects
 {
-    public Address(string city, string street, string house)
+    /// <summary>
+    /// Объект значения, представляющий адрес.
+    /// </summary>
+    public class Address : BaseValueObject
     {
-        City = city;
-        Street = street;
-        House = house;
-    }
+        /// <summary>
+        /// Конструктор для инициализации адреса.
+        /// </summary>
+        /// <param name="city">Город.</param>
+        /// <param name="street">Улица.</param>
+        /// <param name="house">Номер дома.</param>
+        public Address(string city, string street, string house)
+        {
+            City = city;
+            Street = street;
+            House = house;
+        }
+        
+        /// <summary>
+        /// Город.
+        /// </summary>
+        public string City { get; private set; }
 
-    public string City { get; private set; }
-    
-    public string Street { get; private set; }
-    
-    public string House { get; private set; }
+        /// <summary>
+        /// Улица.
+        /// </summary>
+        public string Street { get; private set; }
 
-    public override string ToString()
-    {
-        return $"{City}, {Street}, {House}";
+        /// <summary>
+        /// Номер дома.
+        /// </summary>
+        public string House { get; private set; }
+
+        /// <summary>
+        /// Возвращает строковое представление адреса.
+        /// </summary>
+        /// <returns>Строка, представляющая адрес.</returns>
+        public override string ToString()
+        {
+            return $"{City}, {Street}, {House}";
+        }
     }
 }

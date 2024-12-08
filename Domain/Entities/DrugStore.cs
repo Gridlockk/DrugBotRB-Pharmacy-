@@ -1,19 +1,32 @@
 ﻿using Domain.ValueObjects;
 
-namespace Domain.Entities;
-
-public class DrugStore : BaseEntity
+namespace Domain.Entities
 {
-    public DrugStore(string drugNetwork, int number, Address address)
+    /// <summary>
+    /// Аптека
+    /// </summary>
+    public class DrugStore : BaseEntity
     {
-        DrugNetwork = drugNetwork;
-        Number = number;
-        Address = address;
+        public DrugStore(string drugNetwork, int number, Address address)
+        {
+            DrugNetwork = drugNetwork;
+            Number = number;
+            Address = address;
+        }
+
+        /// <summary>
+        /// Сеть аптек, к которой принадлежит аптека.
+        /// </summary>
+        public string DrugNetwork { get; private set; }
+        
+        /// <summary>
+        /// Номер аптеки в сети.
+        /// </summary>
+        public int Number { get; private set; }
+        
+        /// <summary>
+        /// Адрес аптеки.
+        /// </summary>
+        public Address Address { get; private set; }
     }
-    
-    public string DrugNetwork { get; private set; }
-    
-    public int Number { get; private set; }
-    
-    public Address Address { get; private set; }
 }
